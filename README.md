@@ -1,4 +1,6 @@
-# Sambacha Solidity
+# `homebrew-solidity`
+
+> development workspace
 
 ## How do I install these formulae?
 
