@@ -1,0 +1,105 @@
+version: 2
+jobs:
+  build:
+    macos:
+      xcode: "11.4.0"
+
+    steps:
+      - checkout
+
+      - run:
+          name: Install Solidity
+          command: |
+            brew unlink python@2
+            brew update
+            brew upgrade
+            #brew tap ethereum/ethereum # Acutally we should use the rule from the pull request
+            brew install ./solidity.rb
+
+      - run:
+          name: Test Formula
+          command: brew test solidity.rb
+
+      - run:
+          name: Test Solidity
+          command: solc --version
+
+      - run:
+          name: Cleanup
+          command: brew uninstall boost cmake ccache solidity
+
+      - run:
+          name: Install Solidity 0.7
+          command: |
+            brew update
+            #brew tap ethereum/ethereum # Acutally we should use the rule from the pull request
+            brew install ./solidity@7.rb
+
+      - run:
+          name: Test Formula
+          command: brew test solidity@7
+
+      - run:
+          name: Test Solidity
+          command: solc --version
+
+      - run:
+          name: Cleanup
+          command: brew uninstall boost cmake ccache solidity@7
+
+      - run:
+          name: Install Solidity 0.6
+          command: |
+            brew update
+            #brew tap ethereum/ethereum # Acutally we should use the rule from the pull request
+            brew install ./solidity@6.rb
+
+      - run:
+          name: Test Formula
+          command: brew test solidity@6
+
+      - run:
+          name: Test Solidity
+          command: solc --version
+
+      - run:
+          name: Cleanup
+          command: brew uninstall boost cmake ccache solidity@6
+
+      - run:
+          name: Install Solidity 0.5
+          command: |
+            brew update
+            #brew tap ethereum/ethereum # Acutally we should use the rule from the pull request
+            brew install ./solidity@5.rb
+
+      - run:
+          name: Test Formula
+          command: brew test solidity@5
+
+      - run:
+          name: Test Solidity
+          command: solc --version
+
+      - run:
+          name: Cleanup
+          command: brew uninstall boost cmake ccache solidity@5
+
+      - run:
+          name: Install Solidity 0.4
+          command: |
+            brew update
+            #brew tap ethereum/ethereum # Acutally we should use the rule from the pull request
+            brew install ./solidity@4.rb
+
+      - run:
+          name: Test Formula
+          command: brew test solidity@4
+
+      - run:
+          name: Test Solidity
+          command: solc --version
+
+      - run:
+          name: Install geth
+          command: brew install ./ethereum.rb
